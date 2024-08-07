@@ -2,11 +2,13 @@ package com.kpit.cps.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.kpit.cps.dto.UsersRequestDTO;
 import com.kpit.cps.model.Users;
 
 public interface UsersService {
 
-   public Users saveUser(Users user);
+   public Users saveUser(UsersRequestDTO userRequestDTO);
 
    public Users updateUser(Users user);
 

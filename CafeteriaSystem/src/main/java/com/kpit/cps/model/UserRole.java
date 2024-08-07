@@ -1,10 +1,9 @@
 package com.kpit.cps.model;
 
-import java.util.List;
+import java.util.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,8 +50,9 @@ public class UserRole {
 	@Column(name ="updated_on", nullable = false)
 	private String updatedOn;
    
-	@JsonIgnore
-	@OneToMany(mappedBy = "userRole")
-	private List<Users> users;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "userRole",cascade = CascadeType.ALL)
+	private List<Users> users = new ArrayList<Users>();;
 
 }

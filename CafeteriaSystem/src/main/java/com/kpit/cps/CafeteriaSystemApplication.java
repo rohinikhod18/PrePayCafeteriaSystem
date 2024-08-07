@@ -10,5 +10,6 @@ public class CafeteriaSystemApplication {
 		System.out.println("Welcome to Cafeteria Project");
 		SpringApplication.run(CafeteriaSystemApplication.class, args);
 	}
+	
 
 }

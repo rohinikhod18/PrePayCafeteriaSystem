@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kpit.cps.dto.UsersRequestDTO;
 import com.kpit.cps.model.Users;
 import com.kpit.cps.service.UsersService;
 
@@ -30,9 +31,9 @@ public class UsersController {
     Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     @PostMapping
-    public ResponseEntity<Users> createUser(@RequestBody Users user){
-        logger.info("Creating new user with data: {}", user);
-        Users createdUser = usersService.saveUser(user);
+    public ResponseEntity<Users> createUser(@RequestBody UsersRequestDTO userRequestDTO){
+        logger.info("Creating new user with data: {}", userRequestDTO);
+        Users createdUser = usersService.saveUser(userRequestDTO);
         logger.info("Created user with ID: {}", createdUser.getId());
         return new ResponseEntity<Users>(createdUser, HttpStatus.CREATED);
     }

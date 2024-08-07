@@ -3,15 +3,19 @@ package com.kpit.cps.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kpit.cps.dto.UsersRequestDTO;
 import com.kpit.cps.exception.DataIsNotPresentException;
 import com.kpit.cps.exception.DuplicateDataException;
 import com.kpit.cps.exception.IdNotFoundException;
+import com.kpit.cps.model.UserRole;
 import com.kpit.cps.model.Users;
+import com.kpit.cps.repository.UserRoleRepository;
 import com.kpit.cps.repository.UsersRepository;
 
 @Service
@@ -20,20 +24,36 @@ public class UsersServiceImpl implements UsersService{
      @Autowired
     UsersRepository usersRepository;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
     Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Override
-    public Users saveUser(Users user) {
-        logger.info("Saving user: {}", user);
-        Optional<Users> optionalUser =usersRepository.findByUserName(user.getUserName()); 
-        if(optionalUser.isPresent()){
-            logger.warn("Duplicate user  detected: {}", user.getUserName());
-            throw new DuplicateDataException("User is already Present");
-        }
-        Users savedUser = usersRepository.save(user);
-        logger.info("Saved user with ID: {}", savedUser.getId());
-        return savedUser;
+ public Users saveUser(UsersRequestDTO userrRequestDTO) {
+
+    logger.info("Saving user: {}", userrRequestDTO);
+    Users user = modelMapper.map(userrRequestDTO, Users.class);
+    
+    // UserRole userRole = userRoleRepository.findById(userrRequestDTO.getUserRole().getId())
+    // .orElseThrow(() -> {throw new IdNotFoundException("User not found with ID: " + user.getId());});
+    Optional< UserRole> userRole = userRoleRepository.findById(userrRequestDTO.getUserRole().getId());
+    if(!userRole.isPresent()){
+       throw new IdNotFoundException("UserRole not found with ID: " + userrRequestDTO.getUserRole().getId());
+     }
+    user.setUserRole(userRole.get()); 
+    Optional<Users> optionalUser =usersRepository.findByUserName(user.getUserName()); 
+    if(optionalUser.isPresent()){
+        logger.warn("Duplicate user  detected: {}", user.getUserName());
+        throw new DuplicateDataException("User is already Present");
     }
+    Users savedUser = usersRepository.save(user);
+    logger.info("Saved user with ID: {}", savedUser.getId());
+    return savedUser;
+}
 
     @Override
     public Users updateUser(Users user) {
