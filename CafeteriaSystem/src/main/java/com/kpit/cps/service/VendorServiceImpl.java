@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kpit.cps.exception.DataIsNotPresentException;
 import com.kpit.cps.exception.DuplicateDataException;
@@ -13,6 +14,7 @@ import com.kpit.cps.exception.IdNotFoundException;
 import com.kpit.cps.model.Vendor;
 import com.kpit.cps.repository.VendorRepository;
 
+@Service
 public class VendorServiceImpl implements VendorService {
 
     Logger logger= LoggerFactory.getLogger(VendorServiceImpl.class);
@@ -66,7 +68,7 @@ public class VendorServiceImpl implements VendorService {
             logger.warn("Vendor not found with ID: {}", id);
             throw new IdNotFoundException("User not found with ID: " + id);
         }
-        logger.info("Fetched vendor: {}", optionalVendor.get());
+        logger.info("Fetched vendor: {}");
         return optionalVendor;
     }
 

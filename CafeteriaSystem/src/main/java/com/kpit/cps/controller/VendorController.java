@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kpit.cps.model.Users;
 import com.kpit.cps.model.Vendor;
 import com.kpit.cps.service.VendorService;
 

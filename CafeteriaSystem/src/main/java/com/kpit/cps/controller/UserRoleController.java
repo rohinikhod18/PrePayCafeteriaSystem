@@ -49,7 +49,7 @@ public class UserRoleController {
       public ResponseEntity<Optional<UserRole>> getUserRoleById(@PathVariable("id")long id){
             logger.info("Fetching user role with ID: {}", id);
             Optional<UserRole>optionalUserRole=userRoleService.getUserRoleById(id);
-            logger.info("Fetched user role: {}", optionalUserRole.get());
+            logger.info("Fetched user role: ");
             return new ResponseEntity<Optional<UserRole>>(optionalUserRole,HttpStatus.FOUND);
           }    
 

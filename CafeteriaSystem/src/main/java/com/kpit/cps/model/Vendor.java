@@ -5,12 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Setter
 @Getter
@@ -18,7 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "vendors")
+@Table(name = "vendor")
 public class Vendor {
 
     @Id
@@ -61,7 +65,8 @@ public class Vendor {
     @Column(name ="updated_on", nullable = false)
     private String updatedOn;
 
-
-
+    @ManyToMany(mappedBy = "vendorsList")
+    @JsonBackReference
+    private List<Users> usersList = new ArrayList<>();
 
 }

@@ -57,7 +57,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             logger.warn("User role not found with ID: {}", id);
             throw new IdNotFoundException("UserRole not found with ID: " + id);
          }
-         logger.info("Fetched user role: {}", optionalUserRole.get());
+         logger.info("Fetched user role {}");
          return optionalUserRole;
     }
 
