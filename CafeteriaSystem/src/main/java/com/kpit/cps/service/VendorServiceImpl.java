@@ -31,7 +31,7 @@ public class VendorServiceImpl implements VendorService {
             throw new DuplicateDataException("Vendor is already Present");
         }
         Vendor savedVendor = vendorRepository.save(vendor);
-        logger.info("Saved user role with ID: {}", vendor.getId());   
+        logger.info("Saved vendor with ID: {}", vendor.getId());   
         return savedVendor;
     }
 

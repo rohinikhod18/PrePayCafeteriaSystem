@@ -21,7 +21,7 @@ import com.kpit.cps.repository.UsersRepository;
 @Service
 public class UsersServiceImpl implements UsersService{
 
-     @Autowired
+    @Autowired
     UsersRepository usersRepository;
 
     @Autowired
@@ -32,14 +32,12 @@ public class UsersServiceImpl implements UsersService{
 
     Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
-    @Override
+ @Override
  public Users saveUser(UsersRequestDTO userrRequestDTO) {
 
     logger.info("Saving user: {}", userrRequestDTO);
     Users user = modelMapper.map(userrRequestDTO, Users.class);
     
-    // UserRole userRole = userRoleRepository.findById(userrRequestDTO.getUserRole().getId())
-    // .orElseThrow(() -> {throw new IdNotFoundException("User not found with ID: " + user.getId());});
     Optional< UserRole> userRole = userRoleRepository.findById(userrRequestDTO.getUserRole().getId());
     if(!userRole.isPresent()){
        throw new IdNotFoundException("UserRole not found with ID: " + userrRequestDTO.getUserRole().getId());
