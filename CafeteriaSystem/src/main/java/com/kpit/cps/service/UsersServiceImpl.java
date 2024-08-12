@@ -38,9 +38,9 @@ public class UsersServiceImpl implements UsersService{
     logger.info("Saving user: {}", userrRequestDTO);
     Users user = modelMapper.map(userrRequestDTO, Users.class);
     
-    Optional< UserRole> userRole = userRoleRepository.findById(userrRequestDTO.getUserRole().getId());
+    Optional< UserRole> userRole = userRoleRepository.findById(userrRequestDTO.getUserRoleId());
     if(!userRole.isPresent()){
-       throw new IdNotFoundException("UserRole not found with ID: " + userrRequestDTO.getUserRole().getId());
+       throw new IdNotFoundException("UserRole not found with ID: " + userrRequestDTO.getUserRoleId());
      }
     user.setUserRole(userRole.get()); 
     Optional<Users> optionalUser =usersRepository.findByUserName(user.getUserName()); 

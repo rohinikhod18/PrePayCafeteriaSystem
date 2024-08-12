@@ -1,12 +1,13 @@
 package com.kpit.cps.service;
 
+import com.kpit.cps.dto.ServingCounterDTO;
 import com.kpit.cps.model.ServingCounter;
 import java.util.*;
 
 
 public interface ServingCounterService {
 
-    public ServingCounter saveServingCounter(ServingCounter servingCounter);
+    public ServingCounter saveServingCounter(ServingCounterDTO servingCounterdCounterDTO);
 
    public  ServingCounter updateServingCounter(ServingCounter servingCounter);
 

@@ -38,6 +38,7 @@ public class ServingCounter {
     @ManyToOne
     @JoinColumn(name = "vendor_id", nullable = false)
     @JsonBackReference
+    @ToString.Exclude
     private Vendor vendor;
 }
     

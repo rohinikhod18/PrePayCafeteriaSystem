@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
+import com.kpit.cps.dto.ServingCounterDTO;
 import com.kpit.cps.model.ServingCounter;
 import com.kpit.cps.service.ServingCounterService;
 
@@ -28,9 +29,9 @@ public class ServingCounterController {
     private Logger logger = LoggerFactory.getLogger(ServingCounterController.class);
 
     @PostMapping
-    public ResponseEntity<ServingCounter> createServingCounter(@RequestBody ServingCounter servingCounter) {
-        logger.info("Creating new serving counter with data: {}", servingCounter);
-        ServingCounter createdServingCounter = servingCounterService.saveServingCounter(servingCounter);
+    public ResponseEntity<ServingCounter> createServingCounter(@RequestBody ServingCounterDTO servingCounterDTO) {
+        logger.info("Creating new serving counter with data: {}", servingCounterDTO);
+        ServingCounter createdServingCounter = servingCounterService.saveServingCounter(servingCounterDTO);
         logger.info("Created serving counter with ID: {}", createdServingCounter.getId());
         return new ResponseEntity<>(createdServingCounter, HttpStatus.CREATED);
     }
@@ -41,10 +42,8 @@ public class ServingCounterController {
         Optional<ServingCounter> optionalServingCounter = servingCounterService.getServingCounterById(id);
         logger.info("Fetched serving counter: {}", optionalServingCounter.get());
         return new ResponseEntity<>(optionalServingCounter, HttpStatus.OK);
-    
     }
 
-    
     @GetMapping
     public ResponseEntity<List<ServingCounter>> getAllServingCounters() {
         logger.info("Fetching all serving counters");

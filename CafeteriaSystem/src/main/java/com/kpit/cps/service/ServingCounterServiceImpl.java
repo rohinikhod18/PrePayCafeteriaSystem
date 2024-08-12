@@ -3,16 +3,20 @@ package com.kpit.cps.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kpit.cps.dto.ServingCounterDTO;
 import com.kpit.cps.exception.DataIsNotPresentException;
 import com.kpit.cps.exception.DuplicateDataException;
 import com.kpit.cps.exception.IdNotFoundException;
 import com.kpit.cps.model.ServingCounter;
+import com.kpit.cps.model.Vendor;
 import com.kpit.cps.repository.ServingCounterRepository;
+import com.kpit.cps.repository.VendorRepository;
 
 @Service
 public class ServingCounterServiceImpl implements ServingCounterService {
@@ -22,17 +26,31 @@ public class ServingCounterServiceImpl implements ServingCounterService {
      @Autowired
      ServingCounterRepository servingCounterRepository;
 
+     @Autowired
+     private VendorRepository vendorRepository;
+
+    @Autowired
+     private ModelMapper modelMapper;
+
     @Override
-    public ServingCounter saveServingCounter(ServingCounter servingCounter) {
-        logger.info("Saving ServingCounter: {}", servingCounter);
-        Optional<ServingCounter> optionalServingCounter =servingCounterRepository.findByName(servingCounter.getName()); 
-        if(optionalServingCounter.isPresent()){
+    public ServingCounter saveServingCounter(ServingCounterDTO servingCounterDTO) {
+        logger.info("Saving ServingCounter: {}", servingCounterDTO);
+        ServingCounter servingCounter = modelMapper.map(servingCounterDTO, ServingCounter.class);
+        
+        Optional<Vendor> vendor = vendorRepository.findById(servingCounterDTO.getVendorId());
+        if (!vendor.isPresent()) {
+            throw new IdNotFoundException("Vendor not found with ID: " + servingCounterDTO.getVendorId());
+        }
+        servingCounter.setVendor(vendor.get());
+
+        Optional<ServingCounter> optionalServingCounter = servingCounterRepository.findByName(servingCounter.getName());
+        if (optionalServingCounter.isPresent()) {
             logger.warn("Duplicate ServingCounter name detected: {}", servingCounter.getName());
             throw new DuplicateDataException("ServingCounter is already Present");
         }
-        ServingCounter savedServiceCounter = servingCounterRepository.save(servingCounter);
-        logger.info("Saved ServiceCounter with ID: {}", servingCounter.getId());   
-        return savedServiceCounter;
+        ServingCounter savedServingCounter = servingCounterRepository.save(servingCounter);
+        logger.info("Saved ServingCounter with ID: {}", savedServingCounter.getId());
+        return savedServingCounter;
     }
     
 
