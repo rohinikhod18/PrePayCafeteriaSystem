@@ -16,7 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 import java.util.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -70,7 +70,7 @@ public class Vendor {
     private String updatedOn;
 
     @ManyToMany(mappedBy = "vendorsList")
-    //@JsonBackReference
+   // @JsonBackReference
     @JsonIgnore
     @ToString.Exclude
     private List<Users> usersList = new ArrayList<>();
