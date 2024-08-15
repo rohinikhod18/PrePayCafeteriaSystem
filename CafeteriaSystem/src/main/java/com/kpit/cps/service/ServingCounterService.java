@@ -7,7 +7,7 @@ import java.util.*;
 
 public interface ServingCounterService {
 
-    public ServingCounter saveServingCounter(ServingCounterDTO servingCounterdCounterDTO);
+   public ServingCounter saveServingCounter(ServingCounterDTO servingCounterdCounterDTO);
 
    public  ServingCounter updateServingCounter(ServingCounter servingCounter);
 

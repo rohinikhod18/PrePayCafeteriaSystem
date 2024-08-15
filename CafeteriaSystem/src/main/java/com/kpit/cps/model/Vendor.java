@@ -79,5 +79,10 @@ public class Vendor {
     @JsonManagedReference
     @ToString.Exclude
     private List<ServingCounter> servingCounters = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<MenuItem> menuItems = new ArrayList<>();
     
 }

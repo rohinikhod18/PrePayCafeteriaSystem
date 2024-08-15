@@ -1,5 +1,9 @@
 package com.kpit.cps.model;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,6 +44,12 @@ public class ServingCounter {
     @JsonBackReference
     @ToString.Exclude
     private Vendor vendor;
+
+    @OneToMany(mappedBy = "servingCounter", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<MenuItem> menuItems = new ArrayList<>();
+
 }
     
 
