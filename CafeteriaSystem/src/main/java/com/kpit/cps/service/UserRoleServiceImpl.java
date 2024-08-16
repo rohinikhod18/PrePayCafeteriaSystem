@@ -81,7 +81,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             logger.warn("User role not found with ID: {}", id);
             throw new IdNotFoundException("UserRole not found with ID: " + id);
          }
-         logger.warn("User role not found with ID: {}", id);
+         logger.info("UserRole deleted with ID{}", id); 
          userRoleRepository.deleteById(id);
     }
 
