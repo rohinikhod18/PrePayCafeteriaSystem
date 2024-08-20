@@ -9,6 +9,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Setter
 @Getter
@@ -43,6 +46,11 @@ public class Order {
 
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<OrderItems> orderItems;
 
     
 }

@@ -1,6 +1,9 @@
 package com.kpit.cps.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -65,5 +68,11 @@ public class MenuItem {
 
     @Column(name = "updated_on", nullable = false)
     private String updatedOn;
+
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<OrderItems> orderItems;
+
 }
 

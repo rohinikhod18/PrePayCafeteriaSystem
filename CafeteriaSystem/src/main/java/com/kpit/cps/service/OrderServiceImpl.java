@@ -17,7 +17,7 @@ import com.kpit.cps.repository.OrderRepository;
 @Service
 public class OrderServiceImpl implements OrderService{
 
-    Logger logger= LoggerFactory.getLogger(VendorServiceImpl.class);
+    Logger logger= LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     OrderRepository orderRepository;

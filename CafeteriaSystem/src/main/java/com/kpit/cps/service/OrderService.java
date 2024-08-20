@@ -6,7 +6,7 @@ import com.kpit.cps.model.Order;
 
 public interface OrderService {
 
-    public Order saveOrder(Order order);
+   public Order saveOrder(Order order);
 
    public Order updateOrder(Order order);
 
