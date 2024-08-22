@@ -19,13 +19,13 @@ public class OrderItems {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "order-items")
     @ToString.Exclude
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "menu_item_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "menu-items")
     @ToString.Exclude
     private MenuItem menuItem;
 
