@@ -36,17 +36,16 @@ public class UserRoleServiceImpl implements UserRoleService {
     
 
   
-    @Override
     public UserRole updateUserRole(UserRole userrole) {
         logger.info("Updating user role with ID: {}", userrole.getId());
-        Optional<UserRole>optionalUserRole= userRoleRepository.findById(userrole.getId());
-         if (!optionalUserRole.isPresent()) {
+        Optional<UserRole> optionalUserRole = userRoleRepository.findById(userrole.getId());
+        if (!optionalUserRole.isPresent()) {
             logger.warn("User role not found with ID: {}", userrole.getId());
             throw new IdNotFoundException("UserRole not found with ID: " + userrole.getId());
-         }
-         UserRole updatedUserRole = userRoleRepository.save(userrole);
-         logger.info("Updated user role: {}", updatedUserRole);
-         return updatedUserRole;
+        }
+        UserRole updatedUserRole = userRoleRepository.save(userrole);
+        logger.info("Updated user role: {}", updatedUserRole);
+        return updatedUserRole;
     }
 
     @Override

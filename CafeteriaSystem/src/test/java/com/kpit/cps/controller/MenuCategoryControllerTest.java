@@ -27,7 +27,7 @@ import com.kpit.cps.service.MenuCategoryService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class MenuCategoryTest {
+public class MenuCategoryControllerTest {
 
     @Mock
     MenuCategoryService menuCategoryService;
@@ -38,7 +38,6 @@ public class MenuCategoryTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-  
     }
 
     private MenuCategory expectedMenuCategory() {

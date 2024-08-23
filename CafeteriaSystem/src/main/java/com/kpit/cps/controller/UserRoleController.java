@@ -53,20 +53,20 @@ public class UserRoleController {
             return new ResponseEntity<Optional<UserRole>>(optionalUserRole,HttpStatus.FOUND);
           }    
 
-      @PutMapping  
-      public ResponseEntity<UserRole> updateUserRole(@RequestBody UserRole userRole){
-         logger.info("Updating user role with ID: {}", userRole.getId());
-         UserRole updatedUserRole=userRoleService.saveUserRole(userRole);
-         logger.info("Updated user role: {}", updatedUserRole);
-         return new ResponseEntity<UserRole>(updatedUserRole,HttpStatus.OK);
-       }
+        @PutMapping  
+        public ResponseEntity<UserRole> updateUserRole(@RequestBody UserRole userRole) {
+            logger.info("Updating user role with ID: {}", userRole.getId());
+            UserRole updatedUserRole = userRoleService.updateUserRole(userRole);
+            logger.info("Updated user role: {}", updatedUserRole);
+            return new ResponseEntity<>(updatedUserRole, HttpStatus.OK);
+          }
 
       @DeleteMapping("/{id}")
       public ResponseEntity<String> deleteUserRole(@PathVariable("id")long id){
          logger.info("Deleting user role with ID: {}", id);
          userRoleService.deleteUserRole(id);
          logger.info("Deleted user role with ID: {}", id);
-         return new ResponseEntity<>("User Role Deleted Succefully",HttpStatus.OK);
+         return new ResponseEntity<>("User Role Deleted Succesfully",HttpStatus.OK);
        }
 
 

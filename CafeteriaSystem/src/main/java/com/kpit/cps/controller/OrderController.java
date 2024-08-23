@@ -66,7 +66,7 @@ public class OrderController {
         logger.info("Deleting Order with ID: {}", id);
         orderService.deleteOrder(id);
         logger.info("Deleted Order with ID: {}", id);
-        return new ResponseEntity<>("Order Deleted Succefully",HttpStatus.OK);
+        return new ResponseEntity<>("Order Deleted Successfully",HttpStatus.OK);
 
        }
 
