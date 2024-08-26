@@ -27,6 +27,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 @Entity
 @Table(name = "users")
 public class Users {

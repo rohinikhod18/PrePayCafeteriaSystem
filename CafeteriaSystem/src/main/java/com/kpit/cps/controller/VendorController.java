@@ -63,7 +63,7 @@ public class VendorController {
         logger.info("Deleting Vendor with ID: {}", id);
         vendorService.deleteVendor(id);
         logger.info("Deleted Vendor with ID: {}", id);
-        return new ResponseEntity<>("Vendor Deleted Succefully",HttpStatus.OK);
+        return new ResponseEntity<>("Vendor Deleted Successfully",HttpStatus.OK);
 
        }
 
