@@ -51,7 +51,7 @@ public class UserRole {
 	private String updatedOn;
    
 	
-	@JsonManagedReference
+	@JsonManagedReference(value = "user-role-users")
 	@ToString.Exclude
 	@OneToMany(mappedBy = "userRole",cascade = CascadeType.ALL)
 	private List<Users> users = new ArrayList<Users>();;

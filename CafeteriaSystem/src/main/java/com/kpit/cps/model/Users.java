@@ -41,7 +41,7 @@ public class Users {
     
     @ManyToOne
     @JoinColumn(name = "user_role_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "user-role-users")
     @ToString.Exclude
     private UserRole userRole;
     
@@ -78,7 +78,7 @@ public class Users {
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "vendor_id")   
     )
-    @JsonManagedReference
+    @JsonManagedReference(value = "vendor-users")
     @ToString.Exclude
     private List<Vendor> vendorsList = new ArrayList<>();
 

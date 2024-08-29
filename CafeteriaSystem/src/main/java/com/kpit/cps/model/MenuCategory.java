@@ -51,7 +51,7 @@ public class MenuCategory {
     private String updatedOn;
 
     @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "menu-category-menu-items")
     @ToString.Exclude
     private List<MenuItem> menuItems = new ArrayList<>();
 

@@ -16,8 +16,8 @@ import lombok.Setter;
 import lombok.ToString;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Setter
@@ -71,17 +71,18 @@ public class Vendor {
 
     @ManyToMany(mappedBy = "vendorsList")
    // @JsonBackReference
-    @JsonIgnore
+   //@jsonignore
+     @JsonBackReference(value = "vendor-users")
     @ToString.Exclude
     private List<Users> usersList = new ArrayList<>();
   
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "vendor-serving-counters")
     @ToString.Exclude
     private List<ServingCounter> servingCounters = new ArrayList<>();
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "vendor-menu-items")
     @ToString.Exclude
     private List<MenuItem> menuItems = new ArrayList<>();
     

@@ -41,12 +41,12 @@ public class ServingCounter {
 
     @ManyToOne
     @JoinColumn(name = "vendor_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "vendor-serving-counters")
     @ToString.Exclude
     private Vendor vendor;
 
     @OneToMany(mappedBy = "servingCounter", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "serving-counter-menu-items")
     @ToString.Exclude
     private List<MenuItem> menuItems = new ArrayList<>();
 

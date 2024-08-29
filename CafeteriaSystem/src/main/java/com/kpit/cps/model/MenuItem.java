@@ -41,19 +41,19 @@ public class MenuItem {
 
     @ManyToOne
     @JoinColumn(name = "menu_category_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "menu-category-menu-items")
     @ToString.Exclude
     private MenuCategory menuCategory;
 
     @ManyToOne
     @JoinColumn(name = "vendor_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "vendor-menu-items")
     @ToString.Exclude
     private Vendor vendor;
 
     @ManyToOne
     @JoinColumn(name = "serving_counter_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "serving-counter-menu-items")
     @ToString.Exclude
     private ServingCounter servingCounter;
 
